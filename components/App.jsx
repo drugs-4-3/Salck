@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ChannelSection from './channels/ChannelSection.jsx';
 import MessageSection from './messages/MessageSection.jsx';
+import Moment from 'moment';
 
 class App extends Component {
 
@@ -39,7 +40,8 @@ class App extends Component {
 		let currentChannelName = this.state.activeChannel.name;
 		let newMessage = {
 			content: messageText, 
-			datetime: Date(),
+			timestamp: Moment().format("YYYY-MM-DD hh:mm:ss"),
+			author: "mihau",
 			id: messages[currentChannelName].length + 1
 		}
 		messages[currentChannelName].push(newMessage);

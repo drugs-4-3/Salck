@@ -7,7 +7,15 @@ class Message extends Component {
 	render() {
 		return(
 			<div className="message">
-				<p>{this.props.message.content}</p>
+				<div className="author">
+					{this.props.message.author}
+				</div>
+				<div className="timestamp">
+					{this.props.message.timestamp}
+				</div>
+				<div className="body">
+					<p>{this.props.message.content}</p>
+				</div>
 			</div>
 		); 
 	}
