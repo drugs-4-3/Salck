@@ -6,6 +6,17 @@ import Message from './Message.jsx';
 class MessageList extends Component {
 
 	render() {
+
+		let isNoChannelSelected = this.props.activeChannel === "";
+		let isChannelWithoutMessages = !isNoChannelSelected && this.props.messages.length === 0;
+
+		if (isNoChannelSelected) {
+			return <MesssagesAlertBox content="Najpierw wybierz kanał lub użytkownika"/>;
+		}
+		if (isChannelWithoutMessages) {
+			return <MesssagesAlertBox content="Ten kanał na razie nie ma wiadomości. Zacznij pisać..."/>;
+		}
+
 		return (
 			<ul>
 				{
@@ -18,6 +29,14 @@ class MessageList extends Component {
 			</ul>
 		);
 	}
+}
+
+function MesssagesAlertBox(props) {
+	return (
+		<div className="msgs-alert-box">
+			{props.content}
+		</div>	
+	);
 }
 
 export default MessageList;

@@ -40,7 +40,7 @@ class App extends Component {
 		let currentChannelName = this.state.activeChannel.name;
 		let newMessage = {
 			content: messageText, 
-			timestamp: Moment().format("YYYY-MM-DD hh:mm:ss"),
+			timestamp: Moment().format("YYYY-MM-DD HH:mm:ss"),
 			author: "mihau",
 			id: messages[currentChannelName].length + 1
 		}

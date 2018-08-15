@@ -6,8 +6,6 @@ import MessageList from './MessageList.jsx';
 
 class MessageSection extends Component {
 
-
-
 	render() {
 		return (
 			<div className="support panel panel-primary messages-container">
@@ -16,9 +14,11 @@ class MessageSection extends Component {
 				</div>
 				<div className="panel-body messages">
 					<MessageList 
-						messages={this.props.messages}/>
+						messages={this.props.messages}
+						activeChannel={this.props.activeChannel}/>
 					<MessageForm 
-						addMessage={this.props.addMessage}/>
+						addMessage={this.props.addMessage}
+						activeChannel={this.props.activeChannel}/>
 				</div>
 			</div>
 		);
