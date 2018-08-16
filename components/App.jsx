@@ -15,6 +15,12 @@ class App extends Component {
 	}
 
 	addChannel(name) {
+
+		let channelOfName = this.getChannelOfName(name);
+		if (channelOfName !== null) {
+			return this.setChannel(channelOfName);
+		}
+
 		let {channels} = this.state;
 		let newChannel = {
 			id: channels.length + 1,
@@ -25,6 +31,16 @@ class App extends Component {
 		this.setState({channels})
 		this.setChannel(newChannel);
 		// TODO: send to a server
+	}
+
+	getChannelOfName(name) {
+		let {channels} = this.state;
+		for (let i = 0; i < channels.length; i++) {
+			if (channels[i].name === name) {
+				return channels[i];
+			}
+		}
+		return null;
 	}
  	
 	setChannel(activeChannel) {
