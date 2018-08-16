@@ -23,4 +23,8 @@ class Message extends Component {
 	}
 }
 
+Message.propTypes = {
+	message:PropTypes.object.isRequired
+}
+
 export default Message;

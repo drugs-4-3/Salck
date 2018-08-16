@@ -10,12 +10,12 @@ class App extends Component {
 		this.state = {
 			channels: [],
 			messages: [],
-			activeChannel: ''
+			activeChannel: null
 		};
 	}
 
 	addChannel(name) {
-
+		
 		let channelOfName = this.getChannelOfName(name);
 		if (channelOfName !== null) {
 			return this.setChannel(channelOfName);

@@ -7,7 +7,7 @@ class MessageList extends Component {
 
 	render() {
 
-		let isNoChannelSelected = this.props.activeChannel === "";
+		let isNoChannelSelected = this.props.activeChannel === null;
 		let isChannelWithoutMessages = !isNoChannelSelected && this.props.messages.length === 0;
 
 		if (isNoChannelSelected) {
@@ -37,6 +37,11 @@ function MesssagesAlertBox(props) {
 			{props.content}
 		</div>	
 	);
+}
+
+MessageList.propTypes = {
+	messages: PropTypes.array.isRequired,
+	activeChannel: PropTypes.object
 }
 
 export default MessageList;

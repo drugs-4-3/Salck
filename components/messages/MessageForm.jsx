@@ -32,4 +32,8 @@ class MessageForm extends Component {
 	}
 }
 
+MessageForm.propTypes = {
+	addMessage: PropTypes.func.isRequired
+}
+
 export default MessageForm;
