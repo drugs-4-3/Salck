@@ -7,7 +7,7 @@ class MessageList extends Component {
 
 	render() {
 
-		let isNoChannelSelected = this.props.activeChannel === null;
+		let isNoChannelSelected = this.props.activeChannel === null && this.props.activeUser === null;
 		let isChannelWithoutMessages = !isNoChannelSelected && this.props.messages.length === 0;
 
 		if (isNoChannelSelected) {
