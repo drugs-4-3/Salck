@@ -10,9 +10,11 @@ class UserList extends Component {
 				<ul>
 					{
 						this.props.users.map(user => {
+
 							return <User 
 								user={user}
 								setUser={this.props.setUser} 
+								isActive={user === this.props.activeUser}
 								key={user.id}/>
 						})
 					}

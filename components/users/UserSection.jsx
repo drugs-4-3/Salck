@@ -12,6 +12,7 @@ class UserSection extends Component {
 				</div>
 				<div className="panel-body users">
 					<UserList
+						activeUser={this.props.activeUser}
 						users={this.props.users}
 						setUser={this.props.setUser}
 					/>

@@ -8,7 +8,7 @@ class MessageSection extends Component {
 
 	render() {
 		return (
-			<div className="support panel panel-primary messages-container">
+			<div className="panel panel-primary messages-container">
 				<div className="panel-heading">
 					<strong>Messages</strong>
 				</div>

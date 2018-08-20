@@ -4,8 +4,11 @@ import PropTypes from 'prop-types';
 class User extends Component {
 
 	render() {
+		
+		let activeClass = this.props.isActive ? "active" : "";
+
 		return (
-			<li className="user">
+			<li className={"user " + activeClass}>
 				<a 
 				onClick={this.setUser.bind(this)}>
 					{this.props.user.name}

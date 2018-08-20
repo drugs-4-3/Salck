@@ -180,12 +180,14 @@ class App extends Component {
 					/>
 					<UserSection
 						users={this.state.users}
+						activeUser = {this.state.activeUser}
 						setUser={this.setUser.bind(this)}
 					/>
 				</div>
 
 				<MessageSection
 					activeChannel={this.state.activeChannel}
+					activeUser = {this.state.activeUser}
 					messages={messages}
 					addMessage={this.addMessage.bind(this)}
 				/>
