@@ -3,6 +3,7 @@ import ChannelSection from './channels/ChannelSection.jsx';
 import MessageSection from './messages/MessageSection.jsx';
 import UserSection from './users/UserSection.jsx';
 import Moment from 'moment';
+import Socket from "../socket.js";
 
 class App extends Component {
 
@@ -10,12 +11,53 @@ class App extends Component {
 		super(props);
 
 		this.state = {
+			isConnected: false,
 			channels: [],
 			users: this.getInitialUsers(),
 			messages: this.getInitializedEmptyMessages(),
 			activeChannel: null,
 			activeUser: null
 		};
+	}
+
+	componentDidMount() {
+		let socket = this.socket = new Socket();
+		socket.on("connect", this.onConnect.bind(this));
+		socket.on("disconnect", this.onDisconnect.bind(this));
+		socket.on("channel add", this.onAddChannel.bind(this));
+	}
+
+	onConnect() {
+		this.setState({isConnected: true});
+	}
+
+	onDisconnect() {
+		this.setState({isConnected: false});
+	}
+
+	addChannel(name) {
+		let channelOfName = this.getChannelByName(name);
+		if (channelOfName !== null) {
+			return this.setChannel(channelOfName);
+		}
+
+		this.socket.emit("channel add", {name});
+	}
+
+	onAddChannel(channelData) {
+		if (typeof channelData.name != 'undefined' && channelData.name.length > 0 && 
+			typeof channelData.id != 'undefined' && channelData.id.length > 0) {
+				this.newChannel(channelData);
+			}
+	}
+
+	newChannel(channel) {
+		let {channels} = this.state;
+		channels.push(channel);
+		this.setState({
+			channels
+		});
+		this.setChannel(channel);
 	}
 
 	getInitialUsers() {
@@ -43,24 +85,7 @@ class App extends Component {
 		return messages;
 	}
 
-	addChannel(name) {
-		
-		let channelOfName = this.getChannelByName(name);
-		if (channelOfName !== null) {
-			return this.setChannel(channelOfName);
-		}
 
-		let {channels} = this.state;
-		let newChannel = {
-			id: channels.length + 1,
-			name
-		};
-
-		channels.push(newChannel);
-		this.setState({channels})
-		this.setChannel(newChannel);
-		// TODO: send to a server
-	}
 
 	getChannelByName(name) {
 		let {channels} = this.state;
